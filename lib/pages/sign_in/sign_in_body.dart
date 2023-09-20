@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intern_project/auth.dart';
 import 'package:intern_project/pages/components/checkbox_and_text.dart';
 import 'package:intern_project/pages/components/social_card.dart';
@@ -27,139 +29,209 @@ class _FormBodyState extends State<FormBody> {
     await Auth().signInEmailAndPassword(email, password);
   }
 
+  void signInGoogle() async {
+    //print("Sign in with Google");
+    try {
+      FirebaseAuth auth = FirebaseAuth.instance;
+      User? user;
+
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken,
+          accessToken: googleSignInAuthentication.accessToken,
+        );
+        try {
+          final UserCredential userCredential =
+              await auth.signInWithCredential(credential);
+          user = userCredential.user;
+        } on FirebaseAuthException catch (e) {
+          print(e);
+        } catch (e) {
+          //print(e);
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    } catch (e) {
+      //print(e);
+    }
+  }
+
+  void signinFacebook() {
+    //print("Sign in Facebook");
+  }
+
+  void signinTwitter() {
+    //print("Sign in Twitter");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            const Spacer(),
-            Text(
-              "Welcome",
-              style: TextStyle(
-                fontSize: Dimensions.font36,
-                fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          child: Column(
+            children: [
+              SizedBox(
+                height: Dimensions.height40,
               ),
-            ),
-            const Text("Sign in with your email and password"),
-            const Spacer(),
-            TextFormWidget(
-              password: false,
-              hint: "Enter your email here",
-              label: "Email",
-              icon: const Icon(Icons.mail),
-              controller: _emailController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter the empty fields";
-                }
-                return null;
-              },
-            ),
-            TextFormWidget(
-              password: true,
-              hint: "Enter your password here",
-              label: "Password",
-              icon: const Icon(Icons.lock),
-              controller: _passwordController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter the empty fields";
-                }
-                return null;
-              },
-            ),
-            Row(
-              children: [
-                const CheckBoxAndText(
-                  text: "Remember me",
+              Text(
+                "Welcome",
+                style: TextStyle(
+                  fontSize: Dimensions.font36,
+                  fontWeight: FontWeight.bold,
                 ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () => Navigator.pushNamed(
-                      context, ForgetPasswordScreen.routeName),
+              ),
+              SizedBox(
+                height: Dimensions.height10,
+              ),
+              const Text("Sign in with your email and password"),
+              SizedBox(
+                height: Dimensions.height70,
+              ),
+              TextFormWidget(
+                password: false,
+                hint: "Enter your email here",
+                label: "Email",
+                icon: const Icon(Icons.mail),
+                controller: _emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter the empty fields";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(
+                height: Dimensions.height10,
+              ),
+              TextFormWidget(
+                password: true,
+                hint: "Enter your password here",
+                label: "Password",
+                icon: const Icon(Icons.lock),
+                controller: _passwordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter the empty fields";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(
+                height: Dimensions.height10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const CheckBoxAndText(
+                    text: "Remember me",
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ForgetPasswordScreen(),
+                      ),
+                    ),
+                    child: Text(
+                      "Forget password?",
+                      style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        fontSize: Dimensions.font14,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: Dimensions.height40,
+              ),
+              SizedBox(
+                width: double.maxFinite,
+                height: Dimensions.height50,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(Dimensions.height20),
+                    ),
+                  ),
+                  onPressed: _handleLogin,
                   child: Text(
-                    "Forget password?",
+                    "Sign in",
                     style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: Dimensions.font14,
-                      decoration: TextDecoration.underline,
+                      fontSize: Dimensions.font26,
                     ),
                   ),
                 ),
-              ],
-            ),
-            const Spacer(),
-            SizedBox(
-              width: double.maxFinite,
-              height: Dimensions.height50,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(Dimensions.height20),
-                  ),
-                ),
-                onPressed: _handleLogin,
-                child: Text(
-                  "Sign in",
-                  style: TextStyle(
-                    fontSize: Dimensions.font26,
-                  ),
-                ),
               ),
-            ),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SocialCard(
-                  img: "assets/icons/google-icon.svg",
-                ),
-                SizedBox(
-                  width: Dimensions.width40,
-                ),
-                const SocialCard(
-                  img: "assets/icons/facebook-2.svg",
-                ),
-                SizedBox(
-                  width: Dimensions.width40,
-                ),
-                const SocialCard(
-                  img: "assets/icons/twitter.svg",
-                ),
-              ],
-            ),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Don't have an account?",
-                  style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    decoration: TextDecoration.underline,
+              SizedBox(
+                height: Dimensions.height40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SocialCard(
+                    img: "assets/icons/google-icon.svg",
+                    onTap: () => signInGoogle(),
                   ),
-                ),
-                SizedBox(width: Dimensions.height5),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SignUpScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    "Sign up",
-                    style: TextStyle(color: Colors.blue),
+                  SizedBox(
+                    width: Dimensions.width40,
                   ),
-                ),
-              ],
-            ),
-            const Spacer(),
-          ],
+                  SocialCard(
+                    img: "assets/icons/facebook-2.svg",
+                    onTap: () => signinFacebook(),
+                  ),
+                  SizedBox(
+                    width: Dimensions.width40,
+                  ),
+                  SocialCard(
+                    img: "assets/icons/twitter.svg",
+                    onTap: () => signinTwitter(),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: Dimensions.height40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Don't have an account?",
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  SizedBox(width: Dimensions.height5),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignUpScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Sign up",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                ],
+              ),
+              //const Spacer(),
+            ],
+          ),
         ),
       ),
     );

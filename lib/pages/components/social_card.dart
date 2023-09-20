@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intern_project/dimensions.dart';
 
 class SocialCard extends StatelessWidget {
-  const SocialCard({Key? key, required this.img}) : super(key: key);
+  const SocialCard({Key? key, required this.img, required this.onTap})
+      : super(key: key);
   final String img;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(5),
-      height: 40,
-      width: 40,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        // color: Colors.red,
-        // color: Color(0xFFF5F6F9),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(Dimensions.height5),
+        height: Dimensions.height40,
+        width: Dimensions.width40,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+        ),
+        child: SvgPicture.asset(img),
       ),
-      child: SvgPicture.asset(img),
     );
   }
 }

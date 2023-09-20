@@ -10,6 +10,7 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController mySearchController = TextEditingController();
     return Container(
       padding: EdgeInsets.only(
         top: Dimensions.height10,
@@ -47,7 +48,11 @@ class HomeHeader extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(Dimensions.width10),
                   child: TextField(
-                    onChanged: (value) {},
+                    controller: mySearchController,
+                    //undoController: UndoHistoryController(),
+                    onChanged: (value) {
+                      mySearchController.clear();
+                    },
                     decoration: const InputDecoration(
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,

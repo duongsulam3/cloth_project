@@ -30,7 +30,7 @@ class _SliderImagesAndDotsWidgetState extends State<SliderImagesAndDotsWidget> {
             );
           },
           options: CarouselOptions(
-            height: Dimensions.height320,
+            height: Dimensions.height250,
             autoPlay: true,
             viewportFraction: 1,
             onPageChanged: (index, reason) => setState(
@@ -49,16 +49,16 @@ class _SliderImagesAndDotsWidgetState extends State<SliderImagesAndDotsWidget> {
         activeIndex: activeIndex,
         count: urlBannerImages.length,
         effect: CustomizableEffect(
-          dotDecoration: const DotDecoration(
-            width: 12,
-            height: 6,
+          dotDecoration: DotDecoration(
+            width: Dimensions.width10,
+            height: Dimensions.height5,
             color: Colors.grey,
-            dotBorder: DotBorder(
+            dotBorder: const DotBorder(
               padding: 1,
               width: 1,
               color: Colors.grey,
             ),
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(1),
               topRight: Radius.circular(8),
               bottomLeft: Radius.circular(8),
@@ -68,8 +68,8 @@ class _SliderImagesAndDotsWidgetState extends State<SliderImagesAndDotsWidget> {
           ),
           spacing: 6.0,
           activeDotDecoration: DotDecoration(
-            width: 16,
-            height: 6,
+            width: Dimensions.width15,
+            height: Dimensions.height5,
             color: const Color(0xffEFC76F),
             rotationAngle: 180,
             verticalOffset: -5,

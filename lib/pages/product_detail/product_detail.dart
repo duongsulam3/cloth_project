@@ -19,7 +19,7 @@ class ProductDetail extends StatefulWidget {
 
 class _ProductDetailState extends State<ProductDetail> {
   // TODO: implement widget
-  String size = "Please select a size";
+  String size = "L";
   final _cartBox = Hive.box('cart_box');
   final _favBox = Hive.box('fav_box');
   int activeIndex = 0;
@@ -314,6 +314,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                         'price': widget.myCloth.price,
                                         'qty': 1,
                                       });
+                                      print(widget.myCloth.idCloth);
                                       Navigator.pop(context);
                                     },
                                     child: Container(

@@ -116,11 +116,11 @@ class BuildItems extends StatelessWidget {
                         Text(
                           "${myProducts[index]["price"]} ${myProducts[index]["currency"]}",
                         ),
-                        Text("Sold 3000"),
+                        const Text("Sold 3000"),
                       ],
                     ),
                     const Spacer(),
-                    Align(
+                    const Align(
                       alignment: Alignment.bottomRight,
                       child: Text("Sell 50%"),
                     ),

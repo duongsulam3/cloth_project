@@ -11,6 +11,7 @@ class GridViewPerItem extends StatelessWidget {
   final String sale;
   final int sold;
   final Function()? onTap;
+
   const GridViewPerItem({
     Key? key,
     required this.imgCloth,
@@ -84,7 +85,7 @@ class GridViewPerItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "$oldPrice $currency",
+                          "$oldPriceđ",
                           style: const TextStyle(
                             decoration: TextDecoration.lineThrough,
                           ),
@@ -101,7 +102,7 @@ class GridViewPerItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          price.toString(),
+                          "$priceđ",
                           style: TextStyle(
                             color: Colors.red,
                             fontSize: Dimensions.font26,

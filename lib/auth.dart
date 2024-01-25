@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Auth {
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> createEmailAndPassword(String email, String password) async {
@@ -11,7 +12,13 @@ class Auth {
       );
     } on FirebaseAuthException catch (e) {
       throw Exception(e.toString());
-    } catch (e) {
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+    } on FirebaseAuthException catch (e) {
       throw Exception(e.toString());
     }
   }
@@ -22,4 +29,6 @@ class Auth {
       password: password,
     );
   }
+
+
 }

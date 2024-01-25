@@ -27,7 +27,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                 child: const SaleBanner(),
               ),
               SizedBox(height: Dimensions.height20),
-              const SliderImagesAndDotsWidget(),
+              SliderImagesAndDotsWidget(banners: readBanner()),
               SizedBox(height: Dimensions.height20),
               const TitleTextAndIcon(
                 text: "Suggest for you",

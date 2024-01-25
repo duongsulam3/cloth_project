@@ -14,13 +14,13 @@ class _ListImgViewState extends State<ListImgView> {
       alignment: Alignment.center,
       height: 500,
       width: double.maxFinite,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/model1.jpg"),
           fit: BoxFit.cover,
         ),
       ),
-      child: Text(
+      child: const Text(
         "Data",
         style: TextStyle(
           color: Colors.white,

@@ -9,6 +9,7 @@ class MenClothing {
   final String category;
   final String currency;
   final String sale;
+  final List keySearch;
 
   MenClothing({
     required this.idCloth,
@@ -21,6 +22,7 @@ class MenClothing {
     required this.sold,
     required this.currency,
     required this.sale,
+    required this.keySearch,
   });
 
   Map<String, dynamic> toJson() => {
@@ -34,6 +36,7 @@ class MenClothing {
         "currency": currency,
         "sold": sold,
         "sale": sale,
+        "keySearch": keySearch,
       };
 
   static MenClothing fromJson(Map<String, dynamic> json) => MenClothing(
@@ -47,5 +50,6 @@ class MenClothing {
         currency: json['currency'],
         sold: json['sold'],
         sale: json['sale'],
+        keySearch: json["keySearch"],
       );
 }

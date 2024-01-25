@@ -11,6 +11,7 @@ import '../cart/cart_page.dart';
 
 class ProductDetail extends StatefulWidget {
   final dynamic myCloth;
+
   const ProductDetail({Key? key, required this.myCloth}) : super(key: key);
 
   @override
@@ -314,7 +315,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                         'price': widget.myCloth.price,
                                         'qty': 1,
                                       });
-                                      print(widget.myCloth.idCloth);
+                                      //print(widget.myCloth.idCloth);
                                       Navigator.pop(context);
                                     },
                                     child: Container(

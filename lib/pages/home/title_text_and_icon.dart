@@ -17,7 +17,7 @@ class TitleTextAndIcon extends StatelessWidget {
         children: [
           Text(
             text,
-            style: GoogleFonts.beauRivage(
+            style: GoogleFonts.roboto(
               textStyle: TextStyle(
                 fontSize: Dimensions.height20,
               ),

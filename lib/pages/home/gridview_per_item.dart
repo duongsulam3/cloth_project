@@ -41,7 +41,7 @@ class GridViewPerItem extends StatelessWidget {
           children: [
             // Ảnh sản phẩm
             Container(
-              height: Dimensions.height200,
+              height: Dimensions.height180,
               alignment: Alignment.topRight,
               decoration: BoxDecoration(
                 color: Colors.grey,
@@ -62,7 +62,7 @@ class GridViewPerItem extends StatelessWidget {
             // Mô tả sản phẩm
             Flexible(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Column(
                   children: [
                     // Tên sản phẩm
@@ -71,7 +71,7 @@ class GridViewPerItem extends StatelessWidget {
                       child: Text(
                         nameCloth,
                         maxLines: 3,
-                        //softWrap: true,
+                        // softWrap: true,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: Dimensions.font26,
@@ -79,7 +79,6 @@ class GridViewPerItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Spacer(),
                     // Giá gốc & sold
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,8 +95,8 @@ class GridViewPerItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Spacer(),
                     //Giá KM & sale
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

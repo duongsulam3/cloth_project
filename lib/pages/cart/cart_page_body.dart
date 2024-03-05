@@ -66,15 +66,13 @@ class _CartPageBodyState extends State<CartPageBody> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(Dimensions.height8),
           child: Stack(
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 40,
-                  ),
+                  SizedBox(height: Dimensions.height40),
                   GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
@@ -121,7 +119,7 @@ class _CartPageBodyState extends State<CartPageBody> {
                               ],
                             ),
                             child: Container(
-                              height: 110,
+                              height: Dimensions.height120,
                               width: double.maxFinite,
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade100,
@@ -143,9 +141,9 @@ class _CartPageBodyState extends State<CartPageBody> {
                                           EdgeInsets.all(Dimensions.height10),
                                       child: AvifImage.network(
                                         dataCart['img'],
-                                        width: 90,
-                                        height: 90,
-                                        fit: BoxFit.fill,
+                                        width: Dimensions.width90,
+                                        height: Dimensions.height90,
+                                        fit: BoxFit.fitHeight,
                                       ),
                                     ),
                                   ),
@@ -176,17 +174,18 @@ class _CartPageBodyState extends State<CartPageBody> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.all(Dimensions.height8),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        const Icon(Icons.remove),
+                                        const Icon(Icons.add),
                                         Container(
                                           color: Colors.grey,
                                           child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                            padding: EdgeInsets.all(
+                                                Dimensions.height8),
                                             child: Text(
                                               dataCart['qty'].toString(),
                                               style: const TextStyle(
@@ -195,7 +194,7 @@ class _CartPageBodyState extends State<CartPageBody> {
                                             ),
                                           ),
                                         ),
-                                        const Icon(Icons.add),
+                                        const Icon(Icons.remove),
                                       ],
                                     ),
                                   )
@@ -212,13 +211,13 @@ class _CartPageBodyState extends State<CartPageBody> {
                   ),
                   //Spacer(),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(Dimensions.height8),
                     child: ElevatedButton(
                       onPressed: null,
                       child: SizedBox(
                         //color: Colors.red,
                         width: double.maxFinite,
-                        height: 70,
+                        height: Dimensions.height70,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

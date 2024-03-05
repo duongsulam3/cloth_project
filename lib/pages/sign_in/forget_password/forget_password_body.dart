@@ -16,64 +16,59 @@ class _ForgetPassBodyState extends State<ForgetPassBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(
+      padding: EdgeInsets.all(Dimensions.height8),
+      child: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Spacer(),
-            Text(
-              "Forget Password",
-              style: TextStyle(
-                fontSize: Dimensions.font36,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
-              height: Dimensions.height20,
-            ),
+            SizedBox(height: Dimensions.height180),
             const Text(
                 "Please fill your email in the input below to find password"),
-            const Spacer(),
+            SizedBox(height: Dimensions.height20),
             TextFormWidget(
               hint: "Enter your email",
               label: "Email",
               icon: const Icon(Icons.mail),
               password: false,
               controller: _email,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Please enter the empty fields";
-                }
-                return null;
-              },
             ),
-            const Spacer(flex: 2),
+            SizedBox(height: Dimensions.height200),
             SizedBox(
               width: double.maxFinite,
               height: Dimensions.height50,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(Dimensions.height20),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orangeAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(Dimensions.height20),
+                    ),
                   ),
-                ),
-                onPressed: () {},
-                child: Text(
-                  "CLICK HERE TO CONTINUE",
-                  style: TextStyle(
-                    fontSize: Dimensions.font14,
+                  onPressed: () {},
+                  child: Text(
+                    "CONTINUE",
+                    style: TextStyle(
+                        fontSize: Dimensions.font26, color: Colors.black),
                   ),
                 ),
               ),
             ),
-            const Spacer(),
+            SizedBox(height: Dimensions.height20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text("Don't have an accout ? "),
                 GestureDetector(
-                  onTap: () =>
-                      Navigator.pushNamed(context, SignUpScreen.routeName),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SignUpScreen(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     "Sign up",
                     style: TextStyle(
@@ -83,7 +78,6 @@ class _ForgetPassBodyState extends State<ForgetPassBody> {
                 ),
               ],
             ),
-            const Spacer(),
           ],
         ),
       ),

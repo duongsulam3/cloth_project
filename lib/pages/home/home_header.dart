@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../dimensions.dart';
 import '../cart/cart_page.dart';
 import '../components/icon_button.dart';
@@ -48,22 +47,24 @@ class HomeHeader extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(Dimensions.width10),
                   child: TextField(
+                    //textAlignVertical: TextAlignVertical.center,
                     controller: mySearchController,
                     //undoController: UndoHistoryController(),
                     onChanged: (value) {
-                      mySearchController.clear();
+                      mySearchController.value;
                     },
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
-                      hintStyle: TextStyle(
-                        fontStyle: FontStyle.italic,
-                      ),
-                      hintText: "Search here...",
-                      icon: Icon(
+                      contentPadding: EdgeInsets.symmetric(vertical: Dimensions.height9),
+                      prefixIcon: const Icon(
                         Icons.search,
                         color: Colors.black,
                       ),
+                      hintStyle: const TextStyle(
+                        fontStyle: FontStyle.italic,
+                      ),
+                      hintText: "Search here...",
                     ),
                   ),
                 ),

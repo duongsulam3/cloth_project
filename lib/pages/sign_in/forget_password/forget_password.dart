@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../dimensions.dart';
 import 'forget_password_body.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
@@ -8,12 +9,16 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: const Text("Forget Password"),
-      // ),
-      body: ForgetPassBody(),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          "Forget Password",
+          style: TextStyle(fontSize: Dimensions.font26),
+        ),
+      ),
+      body: const ForgetPassBody(),
     );
   }
 }

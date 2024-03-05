@@ -21,8 +21,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = FirebaseAuth.instance.authStateChanges();
     return StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
+        stream: auth,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Consumer<MainScreenNotification>(

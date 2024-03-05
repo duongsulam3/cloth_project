@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intern_project/dimensions.dart';
 
 class TextFormWidget extends StatelessWidget {
   const TextFormWidget({
@@ -8,31 +9,31 @@ class TextFormWidget extends StatelessWidget {
     required this.icon,
     required this.password,
     required this.controller,
-    required this.validator,
   }) : super(key: key);
   final String hint;
   final String label;
   final Icon icon;
   final bool password;
   final TextEditingController? controller;
-  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(Dimensions.width10),
       child: TextFormField(
         controller: controller,
-        validator: validator,
         obscureText: password,
         decoration: InputDecoration(
           hintText: hint,
+          hintStyle: const TextStyle(
+            fontStyle: FontStyle.italic,
+          ),
           labelText: label,
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(Dimensions.height20),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(Dimensions.height20),
           ),
           floatingLabelBehavior: FloatingLabelBehavior.auto,
           suffixIcon: icon,

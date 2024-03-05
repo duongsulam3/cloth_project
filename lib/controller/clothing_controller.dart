@@ -34,6 +34,5 @@ Stream<List<MenClothing>> readCategoryCloth(String cate) => _firestore
         event.docs.map((e) => MenClothing.fromJson(e.data())).toList());
 
 //User
-Future<UserModel> readUser(String id) =>
-    _firestore.collection('users').doc(id).get().then((DocumentSnapshot doc) =>
-        UserModel.fromJson(doc.data() as Map<String, dynamic>));
+Future<DocumentSnapshot<Map<String, dynamic>>> readUser(String id) =>
+    _firestore.collection('users').doc(id).get();

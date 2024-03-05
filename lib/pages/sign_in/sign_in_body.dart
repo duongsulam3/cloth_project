@@ -26,15 +26,26 @@ class _FormBodyState extends State<FormBody> {
   _handleLogin() async {
     final email = _emailController.value.text;
     final password = _passwordController.value.text;
-    await Auth().signInEmailAndPassword(email, password);
+    if (email.isEmpty) {
+      return ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Email is empty! Please check again!"),
+        ),
+      );
+    } else if (password.isEmpty) {
+      return ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Password is empty! Please check again!"),
+        ),
+      );
+    } else {
+      await Auth().signInEmailAndPassword(email, password);
+    }
   }
 
   void signInGoogle() async {
     //print("Sign in with Google");
     try {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      User? user;
-
       final GoogleSignIn googleSignIn = GoogleSignIn();
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
@@ -45,11 +56,7 @@ class _FormBodyState extends State<FormBody> {
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken,
         );
-        try {
-          final UserCredential userCredential =
-              await auth.signInWithCredential(credential);
-          user = userCredential.user;
-        } on FirebaseAuthException catch (e) {
+        try {} on FirebaseAuthException catch (e) {
           print(e);
         } catch (e) {
           //print(e);
@@ -102,12 +109,6 @@ class _FormBodyState extends State<FormBody> {
                 label: "Email",
                 icon: const Icon(Icons.mail),
                 controller: _emailController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter the empty fields";
-                  }
-                  return null;
-                },
               ),
               SizedBox(
                 height: Dimensions.height10,
@@ -118,12 +119,6 @@ class _FormBodyState extends State<FormBody> {
                 label: "Password",
                 icon: const Icon(Icons.lock),
                 controller: _passwordController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter the empty fields";
-                  }
-                  return null;
-                },
               ),
               SizedBox(
                 height: Dimensions.height10,
@@ -160,6 +155,7 @@ class _FormBodyState extends State<FormBody> {
                 height: Dimensions.height50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orangeAccent,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(Dimensions.height20),
                     ),
@@ -168,8 +164,7 @@ class _FormBodyState extends State<FormBody> {
                   child: Text(
                     "Sign in",
                     style: TextStyle(
-                      fontSize: Dimensions.font26,
-                    ),
+                        fontSize: Dimensions.font26, color: Colors.black),
                   ),
                 ),
               ),

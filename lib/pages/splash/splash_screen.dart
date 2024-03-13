@@ -59,6 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
               width: double.maxFinite,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orangeAccent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(Dimensions.height20),
                   ),
@@ -67,12 +68,14 @@ class _SplashScreenState extends State<SplashScreen> {
                   final prefs = await SharedPreferences.getInstance();
                   prefs.setBool("showHome", true);
                   if (!mounted) return;
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                  );
+                  if (context.mounted) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
+                  }
                 },
                 child: Text(
                   "Continue",

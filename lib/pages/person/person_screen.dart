@@ -7,6 +7,8 @@ import 'package:intern_project/controller/clothing_controller.dart';
 import 'package:intern_project/dimensions.dart';
 import 'package:intern_project/model/user_model.dart';
 import 'package:intern_project/pages/components/feature_button.dart';
+import 'package:intern_project/pages/person/change_password/change_password_screen.dart';
+import 'package:intern_project/pages/person/edit_profile/edit_profile.dart';
 
 class PersonScreen extends StatelessWidget {
   const PersonScreen({Key? key}) : super(key: key);
@@ -18,12 +20,8 @@ class PersonScreen extends StatelessWidget {
       future: readUser(user!.uid),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Text("Error: ${snapshot.error}");
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (snapshot.hasData) {
+          return Text("Having error to loading: ${snapshot.error}");
+        } else if (snapshot.hasData) {
           final data = snapshot.data!.data() as Map<String, dynamic>;
           final userData = UserModel.fromJson(data);
           return Scaffold(
@@ -61,19 +59,31 @@ class PersonScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+
+                  SizedBox(height: Dimensions.height20),
                   // Feature buttons
-                  const FeatureButton(
-                    icon: Icons.edit,
-                    text: "Edit Profile",
-                  ),
-                  const FeatureButton(
-                    icon: Icons.favorite_outline,
-                    text: "My Favorite",
-                  ),
-                  const FeatureButton(
-                    icon: Icons.shopping_cart_rounded,
-                    text: "My Cart",
-                  ),
+                  FeatureButton(
+                      icon: Icons.edit,
+                      text: "Edit my profile",
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  EditProfile(personProfile: userData),
+                            ));
+                      }),
+                  FeatureButton(
+                      icon: Icons.password_outlined,
+                      text: "Change my password",
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const ChangePasswordScreen(),
+                            ));
+                      }),
                   // Sign out button
                   const Spacer(),
                   SizedBox(

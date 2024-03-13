@@ -81,14 +81,12 @@ class _FormBodyState extends State<FormBody> {
   Widget build(BuildContext context) {
     return Form(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(Dimensions.height8),
         child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           child: Column(
             children: [
-              SizedBox(
-                height: Dimensions.height40,
-              ),
+              SizedBox(height: Dimensions.height40),
               Text(
                 "Welcome back",
                 style: TextStyle(
@@ -96,13 +94,9 @@ class _FormBodyState extends State<FormBody> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                height: Dimensions.height10,
-              ),
+              SizedBox(height: Dimensions.height10),
               const Text("Sign in with your email and password"),
-              SizedBox(
-                height: Dimensions.height70,
-              ),
+              SizedBox(height: Dimensions.height70),
               TextFormWidget(
                 password: false,
                 hint: "Enter your email here",
@@ -110,9 +104,7 @@ class _FormBodyState extends State<FormBody> {
                 icon: const Icon(Icons.mail),
                 controller: _emailController,
               ),
-              SizedBox(
-                height: Dimensions.height10,
-              ),
+              SizedBox(height: Dimensions.height10),
               TextFormWidget(
                 password: true,
                 hint: "Enter your password here",
@@ -120,9 +112,7 @@ class _FormBodyState extends State<FormBody> {
                 icon: const Icon(Icons.lock),
                 controller: _passwordController,
               ),
-              SizedBox(
-                height: Dimensions.height10,
-              ),
+              SizedBox(height: Dimensions.height10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -147,9 +137,7 @@ class _FormBodyState extends State<FormBody> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: Dimensions.height40,
-              ),
+              SizedBox(height: Dimensions.height40),
               SizedBox(
                 width: double.maxFinite,
                 height: Dimensions.height50,
@@ -164,13 +152,13 @@ class _FormBodyState extends State<FormBody> {
                   child: Text(
                     "Sign in",
                     style: TextStyle(
-                        fontSize: Dimensions.font26, color: Colors.black),
+                      fontSize: Dimensions.font26,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
-              SizedBox(
-                height: Dimensions.height40,
-              ),
+              SizedBox(height: Dimensions.height40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -178,25 +166,19 @@ class _FormBodyState extends State<FormBody> {
                     img: "assets/icons/google-icon.svg",
                     onTap: () => signInGoogle(),
                   ),
-                  SizedBox(
-                    width: Dimensions.width40,
-                  ),
+                  SizedBox(width: Dimensions.width40),
                   SocialCard(
                     img: "assets/icons/facebook-2.svg",
                     onTap: () => signinFacebook(),
                   ),
-                  SizedBox(
-                    width: Dimensions.width40,
-                  ),
+                  SizedBox(width: Dimensions.width40),
                   SocialCard(
                     img: "assets/icons/twitter.svg",
                     onTap: () => signinTwitter(),
                   ),
                 ],
               ),
-              SizedBox(
-                height: Dimensions.height40,
-              ),
+              SizedBox(height: Dimensions.height40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -207,7 +189,7 @@ class _FormBodyState extends State<FormBody> {
                       decoration: TextDecoration.underline,
                     ),
                   ),
-                  SizedBox(width: Dimensions.height5),
+                  SizedBox(width: Dimensions.width5),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(

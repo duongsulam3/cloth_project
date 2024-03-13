@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
               return Scaffold(
                 bottomNavigationBar: const BottomNav2(),
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(Dimensions.height200),
+                  preferredSize: Size.fromHeight(Dimensions.height180),
                   child: const HomeHeader(),
                 ),
                 body: _pageList[mainScreenNotification.pageIndex],

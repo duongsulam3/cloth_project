@@ -16,7 +16,7 @@ class CategoriesCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: SizedBox(
-        width: Dimensions.height50,
+        width: Dimensions.width50,
         child: Column(
           children: [
             AspectRatio(
@@ -31,8 +31,8 @@ class CategoriesCard extends StatelessWidget {
             ),
             Text(
               text,
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
+                fontSize: Dimensions.font14,
               ),
             ),
           ],

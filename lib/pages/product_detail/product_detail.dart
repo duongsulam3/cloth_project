@@ -20,7 +20,7 @@ class ProductDetail extends StatefulWidget {
 
 class _ProductDetailState extends State<ProductDetail> {
   // TODO: implement widget
-  String size = "L";
+  String defaultSize = "L";
   final _cartBox = Hive.box('cart_box');
   final _favBox = Hive.box('fav_box');
   int activeIndex = 0;
@@ -177,7 +177,7 @@ class _ProductDetailState extends State<ProductDetail> {
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Selected size: $size",
+                                "Selected size: $defaultSize",
                                 style: GoogleFonts.aBeeZee(
                                   textStyle: TextStyle(
                                     fontSize: Dimensions.font14,
@@ -199,7 +199,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                       // productNotifier.clothSizeSelected = data;
                                       //print(productNotifier.clothSizeSelected);
                                       setState(() {
-                                        size = menSize.size;
+                                        defaultSize = menSize.size;
                                       });
                                     },
                                     child: Container(
@@ -310,7 +310,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                         'idCloth': widget.myCloth.idCloth,
                                         'name': widget.myCloth.name,
                                         'category': widget.myCloth.category,
-                                        'size': size,
+                                        'size': defaultSize,
                                         'img': widget.myCloth.img[0],
                                         'price': widget.myCloth.price,
                                         'qty': 1,

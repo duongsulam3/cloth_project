@@ -22,7 +22,10 @@ class IconContainer extends StatelessWidget {
           shape: BoxShape.circle,
           color: Color(0xffEFC76F),
         ),
-        child: SvgPicture.asset(icon),
+        child: SvgPicture.asset(
+          icon,
+          colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+        ),
       ),
     );
   }

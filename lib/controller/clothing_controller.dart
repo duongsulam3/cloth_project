@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intern_project/model/banner_model.dart';
 import 'package:intern_project/model/men_clothing_model.dart';
 import 'package:intern_project/model/men_size_model.dart';
-import 'package:intern_project/model/user_model.dart';
 
 final _firestore = FirebaseFirestore.instance;
 

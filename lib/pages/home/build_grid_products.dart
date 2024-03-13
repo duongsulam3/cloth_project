@@ -27,7 +27,7 @@ class BuildGridProducts extends StatelessWidget {
               // Spacing
               mainAxisSpacing: Dimensions.height10,
               // Spacing
-              crossAxisSpacing: Dimensions.height10,
+              crossAxisSpacing: Dimensions.width10,
             ),
             itemBuilder: (context, index) {
               final menCloth = menCloths[index];

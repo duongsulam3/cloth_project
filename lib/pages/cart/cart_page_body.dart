@@ -12,6 +12,10 @@ class CartPageBody extends StatefulWidget {
 }
 
 class _CartPageBodyState extends State<CartPageBody> {
+  // Remove trailing zeros behind a double number
+  RegExp regex = RegExp(r'([.]*0)(?!.*\d)');
+
+  //Create Hive named cartBox
   final _cartBox = Hive.box('cart_box');
   List<Map<String, dynamic>> _cart = [];
   double totalPrice = 0;
@@ -137,13 +141,14 @@ class _CartPageBodyState extends State<CartPageBody> {
                                   // Ảnh
                                   SizedBox(
                                     child: Padding(
-                                      padding:
-                                          EdgeInsets.all(Dimensions.height10),
+                                      padding: EdgeInsets.all(
+                                        Dimensions.height10,
+                                      ),
                                       child: AvifImage.network(
                                         dataCart['img'],
                                         width: Dimensions.width90,
                                         height: Dimensions.height90,
-                                        fit: BoxFit.fitHeight,
+                                        fit: BoxFit.fill,
                                       ),
                                     ),
                                   ),
@@ -164,7 +169,7 @@ class _CartPageBodyState extends State<CartPageBody> {
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                                "Price: ${dataCart['price']}")),
+                                                "Price: ${dataCart['price']} VND")),
                                         Align(
                                           alignment: Alignment.centerLeft,
                                           child:
@@ -180,7 +185,10 @@ class _CartPageBodyState extends State<CartPageBody> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        const Icon(Icons.add),
+                                        Icon(
+                                          Icons.add,
+                                          size: Dimensions.font26,
+                                        ),
                                         Container(
                                           color: Colors.grey,
                                           child: Padding(
@@ -194,7 +202,10 @@ class _CartPageBodyState extends State<CartPageBody> {
                                             ),
                                           ),
                                         ),
-                                        const Icon(Icons.remove),
+                                        Icon(
+                                          Icons.remove,
+                                          size: Dimensions.font26,
+                                        ),
                                       ],
                                     ),
                                   )
@@ -228,7 +239,7 @@ class _CartPageBodyState extends State<CartPageBody> {
                               ),
                             ),
                             Text(
-                              totalPrice.toString(),
+                              "${totalPrice.toString().replaceAll(regex, "")} VND",
                               style: TextStyle(
                                 fontSize: Dimensions.font26,
                               ),

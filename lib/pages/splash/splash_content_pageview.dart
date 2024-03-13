@@ -13,7 +13,7 @@ class SplashContent extends StatelessWidget {
       children: [
         const Spacer(),
         Text(
-          "Viet Nam",
+          "ClothS",
           style: TextStyle(
               fontSize: Dimensions.font36,
               color: Colors.red,
@@ -26,7 +26,7 @@ class SplashContent extends StatelessWidget {
         Image.asset(
           img,
           width: double.maxFinite,
-          height: 265,
+          height: Dimensions.height250,
         ),
       ],
     );

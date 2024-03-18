@@ -22,9 +22,10 @@ class _EditProfileBodyState extends State<EditProfileBody> {
 
   @override
   Widget build(BuildContext context) {
+    //connect user database
     DocumentReference user = FirebaseFirestore.instance
         .collection("users")
-        .doc(widget.personProfile.userID.toString());
+        .doc(widget.personProfile.userID);
 
     final lastName = _lastNameController.value.text;
     final firstName = _firstNameController.value.text;
@@ -38,9 +39,11 @@ class _EditProfileBodyState extends State<EditProfileBody> {
           address.isEmpty &&
           city.isEmpty &&
           phone.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("Fill at least one input to make a change"),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Fill at least one input to make a change"),
+          ),
+        );
         Navigator.pop(context);
         return null;
       } else {

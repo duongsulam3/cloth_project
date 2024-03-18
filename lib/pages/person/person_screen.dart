@@ -81,7 +81,7 @@ class PersonScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const ChangePasswordScreen(),
+                                  ChangePasswordScreen(user: userData),
                             ));
                       }),
                   // Sign out button

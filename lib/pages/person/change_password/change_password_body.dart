@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intern_project/auth.dart';
 import 'package:intern_project/dimensions.dart';
+import 'package:intern_project/pages/home/home_page.dart';
 import 'package:intern_project/pages/sign_in/text_form_widget.dart';
 
 class ChangePasswordBody extends StatefulWidget {
-  const ChangePasswordBody({super.key});
+  final dynamic user;
+  const ChangePasswordBody({super.key, required this.user});
 
   @override
   State<ChangePasswordBody> createState() => _ChangePasswordBodyState();
@@ -16,6 +21,80 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
 
   @override
   Widget build(BuildContext context) {
+    final currentPassword = _currentPassword.value.text;
+    final newPassword = _newPassword.value.text;
+    final confirmPassword = _confirmPassword.value.text;
+    final currentUser = FirebaseAuth.instance.currentUser;
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('users').doc(widget.user.userID);
+
+    Future<void> updatePassword() async {
+      if (currentUser != null) {
+        final data = {
+          "password": newPassword,
+        };
+        currentUser
+            .reauthenticateWithCredential(
+              EmailAuthProvider.credential(
+                email: currentUser.email.toString(),
+                password: currentPassword,
+              ),
+            )
+            .then(
+              (value) => currentUser.updatePassword(newPassword).then(
+                    (value) => documentReference.update(data).then(
+                          (value) => Auth()
+                              .signOut()
+                              .then(
+                                (value) =>
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomeScreen(),
+                                  ),
+                                  (context) => false,
+                                ),
+                              )
+                              .whenComplete(() => const AlertDialog(
+                                    title: Text("Updated password"),
+                                  )),
+                        ),
+                  ),
+            );
+      }
+    }
+
+    void validatePassword() {
+      if (currentPassword.isEmpty &&
+          newPassword.isEmpty &&
+          confirmPassword.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Please fill all the field on screen!!"),
+          ),
+        );
+        Navigator.of(context).pop();
+        return;
+      } else if (newPassword != confirmPassword) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("New password isn't correct, please check again!!"),
+          ),
+        );
+        Navigator.of(context).pop();
+        return;
+      } else if (currentPassword != widget.user.password) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Password isn't correct, please check again!!"),
+          ),
+        );
+        Navigator.of(context).pop();
+        return;
+      } else {
+        updatePassword();
+      }
+    }
+
     return Padding(
       padding: EdgeInsets.all(Dimensions.height8),
       child: Column(
@@ -56,20 +135,22 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
               children: [
                 ElevatedButton(
                   onPressed: () {
+                    FocusManager.instance.primaryFocus?.unfocus();
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                              title: const Text("Update profile"),
+                              title: const Text("Update password"),
                               content: const Text(
-                                  "Your profile data will be remove permanently"),
+                                "Are you sure to change your password",
+                              ),
                               actions: [
                                 TextButton(
-                                  onPressed: () {},
-                                  child: const Text("OK"),
+                                  onPressed: validatePassword,
+                                  child: const Text("Yes"),
                                 ),
                                 TextButton(
                                   onPressed: () => Navigator.pop(context),
-                                  child: const Text("Cancel"),
+                                  child: const Text("No"),
                                 )
                               ],
                             ));

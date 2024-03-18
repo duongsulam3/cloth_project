@@ -84,16 +84,16 @@ class _ProductDetailState extends State<ProductDetail> {
                         activeIndex: activeIndex,
                         count: widget.myCloth.img.length,
                         effect: CustomizableEffect(
-                          dotDecoration: const DotDecoration(
-                            width: 12,
-                            height: 6,
+                          dotDecoration: DotDecoration(
+                            width: Dimensions.width10,
+                            height: Dimensions.height5,
                             color: Colors.black,
-                            dotBorder: DotBorder(
+                            dotBorder: const DotBorder(
                               padding: 1,
                               width: 1,
                               color: Colors.white,
                             ),
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(1),
                               topRight: Radius.circular(8),
                               bottomLeft: Radius.circular(8),
@@ -132,7 +132,9 @@ class _ProductDetailState extends State<ProductDetail> {
                             spreadRadius: 2,
                             blurRadius: 7,
                             offset: const Offset(
-                                0, -1), // changes position of shadow
+                              0,
+                              -1,
+                            ), // changes position of shadow
                           ),
                         ],
                         color: Colors.white,
@@ -180,7 +182,8 @@ class _ProductDetailState extends State<ProductDetail> {
                                 "Selected size: $defaultSize",
                                 style: GoogleFonts.aBeeZee(
                                   textStyle: TextStyle(
-                                    fontSize: Dimensions.font14,
+                                    fontSize: Dimensions.font26,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
@@ -210,7 +213,9 @@ class _ProductDetailState extends State<ProductDetail> {
                                       ),
                                       child: Center(
                                         child: Padding(
-                                          padding: const EdgeInsets.all(2.0),
+                                          padding: EdgeInsets.all(
+                                            Dimensions.width5,
+                                          ),
                                           child: Text(
                                             menSize.size,
                                             softWrap: false,

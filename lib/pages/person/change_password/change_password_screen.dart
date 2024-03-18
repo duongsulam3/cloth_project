@@ -4,7 +4,8 @@ import 'package:intern_project/pages/person/change_password/change_password_body
 import '../../../dimensions.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
-  const ChangePasswordScreen({super.key});
+  final dynamic user;
+  const ChangePasswordScreen({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class ChangePasswordScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: const ChangePasswordBody(),
+      body: ChangePasswordBody(user: user),
     );
   }
 }

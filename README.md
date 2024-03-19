@@ -1,4 +1,4 @@
-# intern_project
+# ClothS Project
 
 An E-commerce Application
 
@@ -17,6 +17,8 @@ ClothS
 - Detail Product: Provides detailed information about individual clothing products.
 - Cart Screen: Users can add items to their shopping cart and proceed to checkout.
 - Favorite Screen: Allows users to save their favorite clothing items for easy access.
+- Person Screen: Users can view their information and edit it here.
+Password Change Screen: Users can change their password for more security.
 
 *Product Catalog: The app likely features a comprehensive catalog of clothing items, segmented by gender and age group (male, female, kids, and babies), making it convenient for users to find what they need.
 

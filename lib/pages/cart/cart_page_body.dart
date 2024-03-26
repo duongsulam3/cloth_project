@@ -3,6 +3,7 @@ import 'package:flutter_avif/flutter_avif.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive/hive.dart';
 import 'package:intern_project/dimensions.dart';
+import 'package:intern_project/pages/check_out/check_out.dart';
 
 class CartPageBody extends StatefulWidget {
   const CartPageBody({Key? key}) : super(key: key);
@@ -107,14 +108,16 @@ class _CartPageBodyState extends State<CartPageBody> {
                             Radius.circular(Dimensions.height10),
                           ),
                           child: Slidable(
-                            key: const ValueKey(0),
+                            key: ValueKey(dataCart['key']),
                             endActionPane: ActionPane(
                               motion: const ScrollMotion(),
                               children: [
                                 SlidableAction(
                                   flex: 1,
                                   onPressed: (context) => _deleteCart(
-                                      dataCart['key'], dataCart['price']),
+                                    dataCart['key'],
+                                    dataCart['price'],
+                                  ),
                                   backgroundColor: const Color(0xFF000000),
                                   foregroundColor: Colors.white,
                                   icon: Icons.delete,
@@ -193,7 +196,8 @@ class _CartPageBodyState extends State<CartPageBody> {
                                           color: Colors.grey,
                                           child: Padding(
                                             padding: EdgeInsets.all(
-                                                Dimensions.height8),
+                                              Dimensions.height8,
+                                            ),
                                             child: Text(
                                               dataCart['qty'].toString(),
                                               style: const TextStyle(
@@ -223,12 +227,24 @@ class _CartPageBodyState extends State<CartPageBody> {
                   //Spacer(),
                   Padding(
                     padding: EdgeInsets.all(Dimensions.height8),
-                    child: ElevatedButton(
-                      onPressed: null,
-                      child: SizedBox(
-                        //color: Colors.red,
-                        width: double.maxFinite,
-                        height: Dimensions.height70,
+                    child: SizedBox(
+                      width: double.maxFinite,
+                      height: Dimensions.height70,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange[100],
+                        ),
+                        onPressed: totalPrice == 0
+                            ? null
+                            : () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const CheckOutScreen(),
+                                  ),
+                                );
+                              },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -236,12 +252,14 @@ class _CartPageBodyState extends State<CartPageBody> {
                               "Total Price: ",
                               style: TextStyle(
                                 fontSize: Dimensions.font26,
+                                color: Colors.black,
                               ),
                             ),
                             Text(
                               "${totalPrice.toString().replaceAll(regex, "")} VND",
                               style: TextStyle(
                                 fontSize: Dimensions.font26,
+                                color: Colors.black,
                               ),
                             ),
                           ],

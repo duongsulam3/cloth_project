@@ -29,6 +29,10 @@ class TextFormWidget extends StatelessWidget {
             fontStyle: FontStyle.italic,
           ),
           labelText: label,
+          labelStyle: const TextStyle(
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.w500,
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Dimensions.height20),
           ),

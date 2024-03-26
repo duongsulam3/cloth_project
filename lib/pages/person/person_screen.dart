@@ -87,7 +87,7 @@ class PersonScreen extends StatelessWidget {
                   // Sign out button
                   const Spacer(),
                   SizedBox(
-                    height: Dimensions.height40,
+                    height: Dimensions.height50,
                     width: double.maxFinite,
                     child: ElevatedButton(
                       style: ButtonStyle(

@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:intern_project/controller/search_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../../dimensions.dart';
 import '../cart/cart_page.dart';
 import '../components/icon_button.dart';
 import 'categories.dart';
 
-class HomeHeader extends StatelessWidget {
-  const HomeHeader({Key? key}) : super(key: key);
+class HomeHeader extends StatefulWidget {
+  const HomeHeader({super.key});
+
+  @override
+  State<HomeHeader> createState() => _HomeHeaderState();
+}
+
+class _HomeHeaderState extends State<HomeHeader> {
+  final TextEditingController mySearchController = TextEditingController();
+
+  @override
+  void dispose() {
+    mySearchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController mySearchController = TextEditingController();
+    final searchProvider = Provider.of<SearchProvider>(context);
+
     return Container(
       padding: EdgeInsets.only(
         top: Dimensions.height10,
@@ -51,12 +68,16 @@ class HomeHeader extends StatelessWidget {
                     controller: mySearchController,
                     //undoController: UndoHistoryController(),
                     onChanged: (value) {
-                      mySearchController.value;
+                      searchProvider.updateProductList(value);
+                      setState(() {
+                        mySearchController.value.text;
+                      });
                     },
-                    decoration:  InputDecoration(
+                    decoration: InputDecoration(
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(vertical: Dimensions.height9),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: Dimensions.height9),
                       prefixIcon: const Icon(
                         Icons.search,
                         color: Colors.black,

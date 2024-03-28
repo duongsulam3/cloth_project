@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intern_project/controller/clothing_controller.dart';
 import 'package:intern_project/dimensions.dart';
-import 'package:intern_project/pages/home/build_grid_products.dart';
+
+import '../home/build_grid_product_cate.dart';
 
 class CateListScreen extends StatelessWidget {
   const CateListScreen({
@@ -32,7 +33,7 @@ class CateListScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: Dimensions.height10),
-            BuildGridProducts(
+            BuildGridProductsCate(
               products: readCategoryCloth(cateName.toLowerCase()),
             ),
           ],

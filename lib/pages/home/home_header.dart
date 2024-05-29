@@ -85,7 +85,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                       hintStyle: const TextStyle(
                         fontStyle: FontStyle.italic,
                       ),
-                      hintText: "Search here...",
+                      hintText: "Tìm kiếm: Shirt, Pant,...",
                     ),
                   ),
                 ),

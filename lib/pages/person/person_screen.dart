@@ -53,8 +53,8 @@ class PersonScreen extends StatelessWidget {
                         children: [
                           Text(user.email.toString()),
                           userData.lastName != null
-                              ? Text("Welcome back, ${userData.lastName}")
-                              : Text("Welcome back, ${user.displayName}"),
+                              ? Text("Mừng trở lại, ${userData.lastName}")
+                              : Text("Mừng trở lại, ${user.displayName}"),
                         ],
                       ),
                     ],
@@ -64,7 +64,7 @@ class PersonScreen extends StatelessWidget {
                   // Feature buttons
                   FeatureButton(
                       icon: Icons.edit,
-                      text: "Edit my profile",
+                      text: "Sửa thông tin",
                       onTap: () {
                         Navigator.push(
                             context,
@@ -75,7 +75,7 @@ class PersonScreen extends StatelessWidget {
                       }),
                   FeatureButton(
                       icon: Icons.password_outlined,
-                      text: "Change my password",
+                      text: "Đổi mật khẩu",
                       onTap: () {
                         Navigator.push(
                             context,
@@ -98,7 +98,7 @@ class PersonScreen extends StatelessWidget {
                         Auth().signOut();
                       },
                       child: Text(
-                        "Sign out",
+                        "Đăng xuất",
                         style: TextStyle(
                           fontSize: Dimensions.font26,
                           color: Colors.black,

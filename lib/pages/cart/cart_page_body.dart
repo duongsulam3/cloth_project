@@ -23,9 +23,9 @@ class _CartPageBodyState extends State<CartPageBody> {
 
   @override
   void initState() {
-    super.initState();
     _refreshCart();
     calculatePrice();
+    super.initState();
   }
 
   void _refreshCart() {
@@ -90,7 +90,7 @@ class _CartPageBodyState extends State<CartPageBody> {
                   ),
                   SizedBox(height: Dimensions.height10),
                   Text(
-                    "My Cart",
+                    "Giỏ hàng của tôi",
                     style: TextStyle(
                       fontSize: Dimensions.font36,
                       color: Colors.black,
@@ -121,7 +121,7 @@ class _CartPageBodyState extends State<CartPageBody> {
                                   backgroundColor: const Color(0xFF000000),
                                   foregroundColor: Colors.white,
                                   icon: Icons.delete,
-                                  label: "Delete",
+                                  label: "Xoá",
                                 ),
                               ],
                             ),
@@ -172,11 +172,11 @@ class _CartPageBodyState extends State<CartPageBody> {
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
-                                                "Price: ${dataCart['price']} VND")),
+                                                "Giá: ${dataCart['price']} VND")),
                                         Align(
                                           alignment: Alignment.centerLeft,
-                                          child:
-                                              Text("Size: ${dataCart['size']}"),
+                                          child: Text(
+                                              "Kích cỡ: ${dataCart['size']}"),
                                         ),
                                       ],
                                     ),
@@ -188,10 +188,6 @@ class _CartPageBodyState extends State<CartPageBody> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Icon(
-                                          Icons.add,
-                                          size: Dimensions.font26,
-                                        ),
                                         Container(
                                           color: Colors.grey,
                                           child: Padding(
@@ -205,10 +201,6 @@ class _CartPageBodyState extends State<CartPageBody> {
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        Icon(
-                                          Icons.remove,
-                                          size: Dimensions.font26,
                                         ),
                                       ],
                                     ),
@@ -249,7 +241,7 @@ class _CartPageBodyState extends State<CartPageBody> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Total Price: ",
+                              "Tổng cộng: ",
                               style: TextStyle(
                                 fontSize: Dimensions.font26,
                                 color: Colors.black,

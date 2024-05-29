@@ -18,12 +18,13 @@ class CateListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String cateName = cFromCategories[index]["text"];
+    String cateNameVi = cFromCategories[index]["textVI"];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          cateName,
+          cateNameVi,
           style: TextStyle(
             fontSize: Dimensions.font26,
           ),

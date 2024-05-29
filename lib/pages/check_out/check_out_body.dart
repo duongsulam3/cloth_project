@@ -119,7 +119,7 @@ class _CheckOutBodyState extends State<CheckOutBody> {
                           );
                         },
                         child: Text(
-                          "Continue",
+                          "Tiếp tục",
                           style: TextStyle(
                             fontSize: Dimensions.font16,
                             color: Colors.black,

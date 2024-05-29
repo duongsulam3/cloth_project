@@ -10,7 +10,7 @@ class CheckOutScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Order Information",
+          "Thông tin đơn hàng",
           style: TextStyle(
             fontSize: Dimensions.font26,
             fontWeight: FontWeight.bold,

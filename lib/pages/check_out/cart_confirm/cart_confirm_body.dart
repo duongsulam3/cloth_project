@@ -27,10 +27,10 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
 
   @override
   void initState() {
-    super.initState();
     _refreshCart();
     calculatePrice();
     calculateVAT();
+    super.initState();
   }
 
   void _refreshCart() {
@@ -84,11 +84,6 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final dataUser = DataUser.fromJson(widget.userData);
 
@@ -131,7 +126,7 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "SHOPPING CART",
+              "Giỏ hàng",
               style: TextStyle(
                 fontSize: Dimensions.font26,
                 fontWeight: FontWeight.bold,
@@ -175,7 +170,7 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
                             ),
                             SizedBox(height: Dimensions.height5),
                             Text(
-                              "Product ID: ${dataCart['idItem']}",
+                              "Mã sản phẩm: ${dataCart['idItem']}",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -185,21 +180,21 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
                             ),
                             SizedBox(height: Dimensions.height5),
                             Text(
-                              "Size: ${dataCart['sizeItem']}",
+                              "Kích cỡ: ${dataCart['sizeItem']}",
                               style: TextStyle(
                                 fontSize: Dimensions.font16,
                               ),
                             ),
                             SizedBox(height: Dimensions.height5),
                             Text(
-                              'Quantity: ${dataCart['quantityItem']}',
+                              'Số lượng: ${dataCart['quantityItem']}',
                               style: TextStyle(
                                 fontSize: Dimensions.font16,
                               ),
                             ),
                             const Spacer(),
                             Text(
-                              "Subtotal: ${dataCart['priceItem'].toString()} VND",
+                              "Tạm tính: ${dataCart['priceItem'].toString()} VND",
                               style: TextStyle(
                                 fontSize: Dimensions.font16,
                                 color: Colors.red,
@@ -246,7 +241,7 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "ORDER SUMMARY",
+                      "Hoá đơn",
                       style: TextStyle(
                         fontSize: Dimensions.font16,
                         fontWeight: FontWeight.bold,
@@ -268,7 +263,7 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          "Item(s) subtotal: ",
+                          "Sản phẩm(s) tạm tính",
                         ),
                         Text(
                             "${totalPrice.toString().replaceAll(regex, "")} VND"),
@@ -289,7 +284,7 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "SUBTOTAL:",
+                          "Tạm tính:",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: Dimensions.font16,
@@ -319,7 +314,7 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          "VAT Included:",
+                          "Thuế ( đã tính )",
                         ),
                         Text("${feeVAT.toString().replaceAll(regex, "")} VND"),
                       ],
@@ -339,7 +334,7 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "ORDER TOTAL:",
+                          "Tổng cộng:",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: Dimensions.font16,
@@ -371,7 +366,7 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
                     );
                   },
                   child: Text(
-                    "CANCEL",
+                    "Huỷ",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: Dimensions.font16,
@@ -390,7 +385,7 @@ class _CartConfirmBodyState extends State<CartConfirmBody> {
                     width: Dimensions.width90,
                     child: Center(
                       child: Text(
-                        "CHECK OUT",
+                        "Thanh toán",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: Dimensions.font16,

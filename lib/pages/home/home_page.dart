@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   bottomNavigationBar: const BottomNav2(),
                   appBar: PreferredSize(
                     preferredSize: Size.fromHeight(Dimensions.height180),
-                    child: HomeHeader(),
+                    child: const HomeHeader(),
                   ),
                   body: _pageList[mainScreenNotification.pageIndex],
                 );

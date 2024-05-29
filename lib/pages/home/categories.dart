@@ -10,22 +10,26 @@ class Categories extends StatelessWidget {
     List<Map<String, dynamic>> categories = [
       {
         "icon": "assets/icons/man-categories.svg",
-        "text": "Men",
+        "text": "men",
+        "textVI": "Nam",
         "id": 1,
       },
       {
         "icon": "assets/icons/women-clothing-categories.svg",
-        "text": "Women",
+        "text": "women",
+        "textVI": "Nữ",
         "id": 2,
       },
       {
         "icon": "assets/icons/kids.svg",
-        "text": "Kid",
+        "text": "kid",
+        "textVI": "Trẻ em",
         "id": 3,
       },
       {
         "icon": "assets/icons/baby.svg",
-        "text": "Baby",
+        "text": "baby",
+        "textVI": "Nam",
         "id": 4,
       },
     ];
@@ -37,7 +41,7 @@ class Categories extends StatelessWidget {
           categories.length,
           (index) => CategoriesCard(
             icon: categories[index]["icon"],
-            text: categories[index]["text"],
+            text: categories[index]["textVI"],
             press: () {
               // debugPrint(
               //   categories[index]["id"].toString(),

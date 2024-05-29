@@ -1,14 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intern_project/auth.dart';
-import 'package:intern_project/pages/components/checkbox_and_text.dart';
 import 'package:intern_project/pages/components/social_card.dart';
 import 'package:intern_project/pages/sign_in/forget_password/forget_password.dart';
 import 'package:intern_project/pages/sign_in/text_form_widget.dart';
 import 'package:intern_project/pages/sign_up/sign_up_screen.dart';
 
 import '../../dimensions.dart';
+import '../components/checkbox_and_text.dart';
 
 class FormBody extends StatefulWidget {
   const FormBody({Key? key}) : super(key: key);
@@ -39,7 +40,13 @@ class _FormBodyState extends State<FormBody> {
         ),
       );
     } else {
-      await Auth().signInEmailAndPassword(email, password);
+      await Auth().signInEmailAndPassword(email, password).onError(
+          (error, stackTrace) => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(error.toString()),
+                ),
+              ));
     }
   }
 
@@ -52,30 +59,30 @@ class _FormBodyState extends State<FormBody> {
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;
-        final AuthCredential credential = GoogleAuthProvider.credential(
+        GoogleAuthProvider.credential(
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken,
         );
-        try {} on FirebaseAuthException catch (e) {
-          print(e);
-        } catch (e) {
-          //print(e);
-        }
+        // try {} on FirebaseAuthException catch (e) {
+        //   //print(e);
+        // } catch (e) {
+        //   //print(e);
+        // }
       }
     } on FirebaseAuthException catch (e) {
-      print(e);
-    } catch (e) {
-      //print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
-  void signinFacebook() {
-    //print("Sign in Facebook");
-  }
-
-  void signinTwitter() {
-    //print("Sign in Twitter");
-  }
+  // void signingFacebook() {
+  //   //print("Sign in Facebook");
+  // }
+  //
+  // void signingTwitter() {
+  //   //print("Sign in Twitter");
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -88,18 +95,18 @@ class _FormBodyState extends State<FormBody> {
             children: [
               SizedBox(height: Dimensions.height40),
               Text(
-                "Welcome back",
+                "Xin chào",
                 style: TextStyle(
                   fontSize: Dimensions.font36,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: Dimensions.height10),
-              const Text("Sign in with your email and password"),
+              const Text("Điền thông tin Email và mật khẩu bên dưới"),
               SizedBox(height: Dimensions.height70),
               TextFormWidget(
                 password: false,
-                hint: "Enter your email here",
+                hint: "Nhập email vào đây",
                 label: "Email",
                 icon: const Icon(Icons.mail),
                 controller: _emailController,
@@ -107,8 +114,8 @@ class _FormBodyState extends State<FormBody> {
               SizedBox(height: Dimensions.height10),
               TextFormWidget(
                 password: true,
-                hint: "Enter your password here",
-                label: "Password",
+                hint: "Nhập mật khẩu vào đây",
+                label: "Mật khẩu",
                 icon: const Icon(Icons.lock),
                 controller: _passwordController,
               ),
@@ -117,7 +124,7 @@ class _FormBodyState extends State<FormBody> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const CheckBoxAndText(
-                    text: "Remember me",
+                    text: "Ghi nhớ tôi",
                   ),
                   GestureDetector(
                     onTap: () => Navigator.push(
@@ -127,7 +134,7 @@ class _FormBodyState extends State<FormBody> {
                       ),
                     ),
                     child: Text(
-                      "Forget password?",
+                      "Quên mật khẩu?",
                       style: TextStyle(
                         fontStyle: FontStyle.italic,
                         fontSize: Dimensions.font14,
@@ -150,7 +157,7 @@ class _FormBodyState extends State<FormBody> {
                   ),
                   onPressed: _handleLogin,
                   child: Text(
-                    "Sign in",
+                    "Đăng nhập",
                     style: TextStyle(
                       fontSize: Dimensions.font26,
                       color: Colors.black,
@@ -166,16 +173,16 @@ class _FormBodyState extends State<FormBody> {
                     img: "assets/icons/google-icon.svg",
                     onTap: () => signInGoogle(),
                   ),
-                  SizedBox(width: Dimensions.width40),
-                  SocialCard(
-                    img: "assets/icons/facebook-2.svg",
-                    onTap: () => signinFacebook(),
-                  ),
-                  SizedBox(width: Dimensions.width40),
-                  SocialCard(
-                    img: "assets/icons/twitter.svg",
-                    onTap: () => signinTwitter(),
-                  ),
+                  // SizedBox(width: Dimensions.width40),
+                  // SocialCard(
+                  //   img: "assets/icons/facebook-2.svg",
+                  //   onTap: () => signinFacebook(),
+                  // ),
+                  // SizedBox(width: Dimensions.width40),
+                  // SocialCard(
+                  //   img: "assets/icons/twitter.svg",
+                  //   onTap: () => signinTwitter(),
+                  // ),
                 ],
               ),
               SizedBox(height: Dimensions.height40),
@@ -183,10 +190,10 @@ class _FormBodyState extends State<FormBody> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Don't have an account?",
+                    "Không có tài khoản?",
                     style: TextStyle(
                       fontStyle: FontStyle.italic,
-                      decoration: TextDecoration.underline,
+                      //decoration: TextDecoration.underline,
                     ),
                   ),
                   SizedBox(width: Dimensions.width5),
@@ -200,7 +207,7 @@ class _FormBodyState extends State<FormBody> {
                       );
                     },
                     child: const Text(
-                      "Sign up",
+                      "Đăng ký",
                       style: TextStyle(color: Colors.blue),
                     ),
                   ),

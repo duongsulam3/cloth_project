@@ -13,7 +13,7 @@ class SignInScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "Sign in",
+          "Đăng nhập",
           style: TextStyle(fontSize: Dimensions.font26),
         ),
       ),
